@@ -85,4 +85,8 @@ letsGoH2.addEventListener('drag', e => {
     letsGoH2.textContent = "Wait, where are you taking me!";
 })
 
+letsGoH2.addEventListener('drop', e => {
+    letsGoH2.textContent = "Let's Go!";
+})
+
 
