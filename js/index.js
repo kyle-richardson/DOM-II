@@ -11,44 +11,44 @@ let body = document.querySelector("body");
 let letsGoH2 = document.querySelector(".text-content h2");
 
 
-document.addEventListener('wheel', e=> {
+document.addEventListener('wheel', ()=> {
     body.style.backgroundColor = "lightpink";
     logo.textContent = "OW. That hurts! Click here"
 });
 
 buttons.forEach (ele => {
-    ele.addEventListener('mouseenter', e => {
+    ele.addEventListener('mouseenter', () => {
         ele.style.backgroundColor = 'rgb(65, 216, 240)';
         ele.style.color = "rgb(15, 90, 102)";
     });
-    ele.addEventListener('mouseleave', e => {
+    ele.addEventListener('mouseleave', () => {
         ele.style.backgroundColor = '#17A2B8';
         ele.style.color = "#FFFFFF";
         ele.style.borderColor = '#C0C0C0';
     });
-    ele.addEventListener('mousedown', e => {
+    ele.addEventListener('mousedown', () => {
         ele.style.borderColor = 'red';
         ele.style.color = "#FFFFFF";
     });
-    ele.addEventListener('mouseup', e => {
+    ele.addEventListener('mouseup', () => {
         ele.style.borderColor = '#C0C0C0';
         ele.style.color = "rgb(15, 90, 102)";
     });
 });
 
 pics.forEach (ele => {
-    ele.addEventListener('dblclick', e => {
+    ele.addEventListener('dblclick', () => {
         ele.style.display = "none";
     });
-    ele.addEventListener('mouseenter', e => {
+    ele.addEventListener('mouseenter', () => {
         ele.style.border = '3px solid rgb(15, 90, 102)';
     });
-    ele.addEventListener('mouseleave', e => {
+    ele.addEventListener('mouseleave', () => {
         ele.style.border = '0px';
     });
 });
 
-header.addEventListener('click', e => {
+header.addEventListener('click', () => {
     if(logo.textContent == "SUPER Fun Bus"){
         logo.textContent = "Fun Bus";
     }
@@ -62,7 +62,7 @@ header.addEventListener('click', e => {
     
 });
 
-footer.addEventListener('mouseover', e => {
+footer.addEventListener('mouseover', () => {
     if(footer.textContent == "OooooOOoohhhh.  Spooky right?"){
         footer.textContent = "Copyright Fun Bus 2018";
     }
@@ -72,7 +72,7 @@ footer.addEventListener('mouseover', e => {
     
 });
 
-destinationH2.addEventListener('mousemove', e => {
+destinationH2.addEventListener('mousemove', () => {
     if (destinationH2.style.color == "blue") {
         destinationH2.style.color = "black";
     }
@@ -81,11 +81,11 @@ destinationH2.addEventListener('mousemove', e => {
     }
 });
 
-letsGoH2.addEventListener('drag', e => {
+letsGoH2.addEventListener('drag', () => {
     letsGoH2.textContent = "Wait, where are you taking me!";
 })
 
-letsGoH2.addEventListener('drop', e => {
+letsGoH2.addEventListener('drop', () => {
     letsGoH2.textContent = "Let's Go!";
 })
 
