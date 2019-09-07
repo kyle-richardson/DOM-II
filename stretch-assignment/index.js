@@ -11,53 +11,40 @@ var currentX = 0;
 let holdingDown = false;
 
 
-// let myFunc = setInterval(function() {
-//     move(this);
-// });
-
-
-// const goRight = () => {
-//     let tempX = 0;
-//     return (ele) => {
-//         tempX = ele.getBoundingClientRect().left;
-//         tempX +=5;
-//         ele.style.left = tempX;
-//         return tempX;
-//     }
-// }
-function goRight(ele) {
+function goRight(ele, ind) {
     currentX = getRelativeClientRect(ele).left;
     if (currentX < 600) {
         ele.style.left = currentX + "px";
     }
     else {
-        clearInterval();
+        clearInterval(xPos[ind]);
     }
 }
 
-function goLeft(ele) {
+function goLeft(ele, ind) {
     currentX = getRelativeClientRect(ele).left;
     if (currentX > 10){
         ele.style.left = (currentX-15) + "px";
     }
     else {
-        clearInterval();
+        clearInterval(xPos[ind]);
     }
    
 }
 
-function move(element) {
+function move(element, ind) {
     if (holdingDown) {
-        goRight(element);
+        goRight(element, ind);
         }
     else {
-        goLeft(element);
+        goLeft(element, ind);
     }
 }
 
 boxes.forEach((ele, ind) => {
     ele.style.position = 'relative';
     ele.addEventListener('mousedown', e => {
+        e.stopPropagation();
         if (holdingDown){
             //do nothing
         }
@@ -65,11 +52,12 @@ boxes.forEach((ele, ind) => {
             holdingDown = true;
             clearInterval(xPos[ind]);
             xPos[ind] = setInterval(function() {
-                move(ele);
+                move(ele, ind);
             }, 100);
         }
     });
     ele.addEventListener('mouseup', e => {
+        e.stopPropagation();
         if(holdingDown){
             holdingDown = false;
             clearInterval(xPos[ind]);
@@ -79,6 +67,7 @@ boxes.forEach((ele, ind) => {
         }  
     });
     ele.addEventListener('mouseleave', e => {
+        e.stopPropagation();
         if(holdingDown){
             holdingDown = false;
             clearInterval(xPos[ind]);
