@@ -6,9 +6,11 @@ let pics = document.querySelectorAll('img');
 let logo = document.querySelector(".logo-heading");
 let footer = document.querySelector("footer p");
 let header = document.querySelector(".main-navigation");
+let destination = document.querySelector(".content-destination");
 let destinationH2 = document.querySelector(".content-destination h2");
 let body = document.querySelector("body");
 let letsGoH2 = document.querySelector(".text-content h2");
+let anchors = document.querySelectorAll("a");
 
 
 document.addEventListener('wheel', ()=> {
@@ -36,7 +38,7 @@ buttons.forEach (ele => {
     });
 });
 
-pics.forEach (ele => {
+pics.forEach ((ele, ind) => {
     ele.addEventListener('dblclick', () => {
         ele.style.display = "none";
     });
@@ -46,10 +48,16 @@ pics.forEach (ele => {
     ele.addEventListener('mouseleave', () => {
         ele.style.border = '0px';
     });
+    if(ind===1) {
+        ele.addEventListener('mousedown', () => {
+            ele.style.borderColor = 'red';
+        })
+    }
+
 });
 
-header.addEventListener('click', () => {
-    if(logo.textContent == "SUPER Fun Bus"){
+header.addEventListener('click', e => {
+    if(logo.textContent == "Hint: touch the footer"){
         logo.textContent = "Fun Bus";
     }
     else if (logo.textContent == "OW. That hurts! Click here"){
@@ -57,29 +65,34 @@ header.addEventListener('click', () => {
         body.style.backgroundColor = "white";
     }
     else {
-        logo.textContent = "SUPER Fun Bus";
+        logo.textContent = "Hint: touch the footer";
     }
     
 });
 
 footer.addEventListener('mouseover', () => {
-    if(footer.textContent == "OooooOOoohhhh.  Spooky right?"){
+    if(footer.textContent == "OooooOOoohhhh.  Spooky right? Hint: double click pictures"){
         footer.textContent = "Copyright Fun Bus 2018";
     }
     else {
-        footer.textContent = "OooooOOoohhhh.  Spooky right?";
+        footer.textContent = "OooooOOoohhhh.  Spooky right? Hint: double click pictures";
     }
     
 });
 
-destinationH2.addEventListener('mousemove', () => {
-    if (destinationH2.style.color == "blue") {
-        destinationH2.style.color = "black";
+destination.addEventListener('mousemove', e => {
+    if (destination.style.color == "blue") {
+        destination.style.color = "black";
     }
     else {
-        destinationH2.style.color = "blue";
+        destination.style.color = "blue";
     }
 });
+destinationH2.addEventListener('mousemove', e => {
+    e.stopPropagation()
+    destinationH2.style.border = "2px dotted blue"
+    destination.style.color = "gray"
+})
 
 letsGoH2.addEventListener('drag', () => {
     letsGoH2.textContent = "Wait, where are you taking me!";
@@ -89,4 +102,14 @@ letsGoH2.addEventListener('drop', () => {
     letsGoH2.textContent = "Let's Go!";
 })
 
+letsGoH2.addEventListener('wheel', () => {
+    letsGoH2.textContent = "Hint: Select, then drag me"
+})
+
+anchors.forEach(ele => {
+    ele.addEventListener('click', e => {
+        e.preventDefault();
+        e.target.textContent = "CLICKED";
+    })
+})
 
